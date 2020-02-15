@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>勤怠管理</title>
+	<link th:href="@{/css/reset.css}" rel="stylesheet" type="text/css" href="../static/css/reset.css">
+	<link th:href="@{/css/main.css}" rel="stylesheet" type="text/css" href="../static/css/main.css">
+
+	<!-- google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Kosugi+Maru&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/6dfac05c01.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript" th:src="@{/js/footerFixed.js}" src="../static/js/footerFixed.js"></script>
+	<script type="text/javascript" th:src="@{/js/effectFade.js}" src="../static/js/effectFade.js"></script>
+</head>
+
+<body>
+	<header>
+		<form th:action="@{/login}" method="post">
+			<a class="title-box" href="login">
+				<h1 class="title">勤怠管理</h1><figure><img th:src="@{/images/logo.svg}" src="../static/images/logo.svg"></figure>
+			</a>
+		</form>
+		<form th:action="@{/login}" method="post">
+			<div class="logout">
+				<a href="login" class="logbtn">ログアウト</a>
+			</div>
+		</form>
+	</header>
+
+	<div class="description">
+		<p class="title-description"><i class="fas fa-edit"></i>編集</p>
+	</div>
+
+	<div class="menu-box effect-fade">
+			<div class="menus">
+					<button class="f-btn" onclick="location.href='list.html'" type="submit">戻る</button>
+			</div>
+			
+	
+			<div class="editer">
+					<label class="label" th:for="">勤務日</label>
+					<input type="date" name="event" value=""><br>
+					<label class="label" th:for="">開始時刻</label>
+					<input type="time" name="event" value="09:00"><br>
+					<label class="label" th:for="">終了時刻</label>
+					<input type="time" name="event" value="18:00"><br>
+					<label class="label" th:for="">休憩①</label>
+					<input type="time" name="event" value="12:00" disabled="disabled"><span>～</span>
+					<input type="time" name="event" value="13:00" disabled="disabled"><br>
+					<label class="label" th:for="">休憩②</label>
+					<input type="time" name="event" value="" disabled="disabled"><span>～</span>
+					<input type="time" name="event" value="" disabled="disabled"><br>
+					<label class="label" th:for="">休憩③</label>
+					<input type="time" name="event" value="" disabled="disabled"><span>～</span>
+					<input type="time" name="event" value="" disabled="disabled"><br>
+			</div>
+
+			<div class="menus">
+					<button class="f-btn" onclick="location.href=''" type="submit">追加</button>
+					<button class="f-btn" style="background-color:gray" type="submit" disabled="disabled">更新</button>
+					<button class="f-btn" style="background-color:gray" type="submit" disabled="disabled">削除</button>
+			</div>
+	</div>
+
+	<div id="footer">
+		<p class="footer-text">©株式会社ディー・シー・エフ</p>
+	</div>
+
+	<script>
+		window.onload = function() {
+	  scroll_effect();
+	
+	  $(window).scroll(function(){
+	   scroll_effect();
+	  });
+	
+	  function scroll_effect(){
+	   $('.effect-fade').each(function(){
+		var elemPos = $(this).offset().top;
+		var scroll = $(window).scrollTop();
+		var windowHeight = $(window).height();
+		if (scroll > elemPos - windowHeight){
+		 $(this).addClass('effect-scroll');
+		}
+	   });
+	  }
+	};
+	</script>
+</body>
+
+</html>

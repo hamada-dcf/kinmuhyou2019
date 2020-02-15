@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ログインページ</title>
+</head>
+<body>
+
+	<p>ログインページ</p>
+	<form th:action="@{/home}" method="post">
+		<label th:for="mailaddress">メールアドレス</label>
+		<input type="text" name="mailaddress">
+		<label th:for="password">パスワード</label>
+		<input type="password" name="password">
+		<button type="submit">ログイン</button>
+	</form>
+
+</body>
+</html>

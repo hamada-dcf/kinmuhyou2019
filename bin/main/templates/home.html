@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>勤怠管理</title>
+	<link th:href="@{/css/reset.css}" rel="stylesheet" type="text/css" href="../static/css/reset.css">
+	<link th:href="@{/css/main.css}" rel="stylesheet" type="text/css" href="../static/css/main.css">
+
+	<!-- google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Kosugi+Maru&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/6dfac05c01.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript" th:src="@{/js/footerFixed.js}" src="../static/js/footerFixed.js"></script>
+	<script type="text/javascript" th:src="@{/js/effectFade.js}" src="../static/js/effectFade.js"></script>
+</head>
+<body>
+	<header>
+		<form th:action="@{/login}" method="post">
+			<a class="title-box" href="login">
+				<h1 class="title">勤怠管理</h1><figure><img th:src="@{/images/logo.svg}" src="../static/images/logo.svg"></figure>
+			</a>
+		</form>
+		<form th:action="@{/login}" method="post">
+			<div class="logout">
+				<a href="login" class="logbtn">ログアウト</a>
+			</div>
+		</form>
+	</header>
+
+	<div class="description">
+		<p class="title-description"><i class="fas fa-edit"></i>編集</p>
+	</div>
+	
+
+	
+	<div class="menu-box effect-fade">
+			<div class="menus">
+					<form class="inline-form" th:action="@{/login}" method="post" style="display:inline"><button class="f-btn" onclick="location.href='list.html'" type="submit">戻る</button></form>
+					<form class="inline-form" th:action="@{/menu}" method="post" style="display:inline"><button class="f-btn" onclick="location.href='list.html'" type="submit">メニュー</button></form>
+			</div>
+
+			<div class="getTableData">
+				<!-- コントローラでmav.addObject("username",record.getUsername());を取得して、th:text="${username}"でテーブルのユーザーネームを表示  --> 
+				<p　class="tableLog"><span th:text="${username}"></span>（<span th:text="${mailaddress}"></span>）さんがログインしました</p>
+				
+				<h1 class="intro">現在のテーブルデータ</h1>
+				<!-- コントローラでデータベースを取得してThymeleafで表示  -->
+				
+				<p　class="tableLog">データベースのすべての行を取得します。</p>
+				<textarea class="textarea" th:text="${database}"></textarea>
+				
+				<p　class="tableLog">データベースの一行目の行を取得します。</p>
+				<textarea class="textarea" th:text="${line1}"></textarea>
+				
+				<p　class="tableLog">データベースの二行目の行を取得します。</p>
+				<textarea class="textarea" th:text="${line2}"></textarea>
+				
+				<p　class="tableLog">レコードの数</p>
+				<textarea class="textarea" th:text="${count}"></textarea>
+			</div>
+
+			<div class="editer">
+				<h1 class="intro">追加するテーブルデータ</h1>
+					<label class="dblabel">ユーザーネーム</label>
+					<input type="text" name="event" value=""><br>
+					<label class="dblabel">メールアドレス</label>
+					<input type="email" name="event" value=""><br>
+					<label class="dblabel">パスワード</label>
+					<input type="text" name="event" value=""><br>
+			</div>
+
+			<div class="menus">
+					<button class="f-btn" onclick="location.href=''" type="submit">追加</button>
+					<button class="f-btn" style="background-color:gray" type="submit" disabled="disabled">更新</button>
+					<button class="f-btn" style="background-color:gray" type="submit" disabled="disabled">削除</button>
+			</div>
+	</div>
+
+	<div id="footer">
+		<p class="footer-text">©株式会社ディー・シー・エフ</p>
+	</div>
+
+	<script>
+		window.onload = function() {
+	  scroll_effect();
+	
+	  $(window).scroll(function(){
+	   scroll_effect();
+	  });
+	
+	  function scroll_effect(){
+	   $('.effect-fade').each(function(){
+		var elemPos = $(this).offset().top;
+		var scroll = $(window).scrollTop();
+		var windowHeight = $(window).height();
+		if (scroll > elemPos - windowHeight){
+		 $(this).addClass('effect-scroll');
+		}
+	   });
+	  }
+	};
+	</script>
+</body>
+
+</html>
